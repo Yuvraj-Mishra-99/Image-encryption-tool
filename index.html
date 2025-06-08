@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Manipulation Image Encryption Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Pixel Manipulation Image Encryption Tool</h1>
+            <p>Encrypt and decrypt images using advanced pixel manipulation techniques</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section card">
+                <div class="card__body">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📁</div>
+                            <h3>Drag and drop an image here</h3>
+                            <p>or click to select a file</p>
+                            <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/gif" class="hidden">
+                            <button type="button" class="btn btn--primary" id="uploadBtn"></button>
+                        </div>
+                    </div>
+                    <div class="file-info hidden" id="fileInfo">
+                        <p><strong>File:</strong> <span id="fileName"></span></p>
+                        <p><strong>Dimensions:</strong> <span id="imageDimensions"></span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Canvas Display Section -->
+            <section class="canvas-section">
+                <div class="canvas-container">
+                    <div class="canvas-wrapper">
+                        <h3>Original Image</h3>
+                        <canvas id="originalCanvas" width="400" height="300"></canvas>
+                        <p class="canvas-status" id="originalStatus">No image loaded</p>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <h3>Encrypted/Decrypted Image</h3>
+                        <canvas id="resultCanvas" width="400" height="300"></canvas>
+                        <p class="canvas-status" id="resultStatus">Awaiting encryption</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel -->
+            <section class="controls-section card">
+                <div class="card__body">
+                    <h3>Encryption Controls</h3>
+                    
+                    <div class="form-group">
+                        <label for="encryptionMethod" class="form-label">Encryption Method</label>
+                        <select id="encryptionMethod" class="form-control">
+                            <option value="">Select encryption method...</option>
+                            <option value="xor">XOR Operation</option>
+                            <option value="swap">Pixel Swapping</option>
+                            <option value="caesar">Caesar Cipher</option>
+                            <option value="math">Math Operations</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="encryptionKey" class="form-label" id="keyLabel">Encryption Key</label>
+                        <input type="text" id="encryptionKey" class="form-control" placeholder="Enter key/seed/shift value">
+                        <small class="key-description" id="keyDescription">Select an encryption method first</small>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn--primary" id="encryptBtn" disabled>
+                            <span class="btn-text">Encrypt</span>
+                            <span class="loading-spinner hidden">⟳</span>
+                        </button>
+                        <button type="button" class="btn btn--secondary" id="decryptBtn" disabled>
+                            <span class="btn-text">Decrypt</span>
+                            <span class="loading-spinner hidden">⟳</span>
+                        </button>
+                        <button type="button" class="btn btn--outline" id="resetBtn">Reset</button>
+                    </div>
+
+                    <div class="download-section">
+                        <button type="button" class="btn btn--outline" id="downloadBtn" disabled>Download Result</button>
+                        <button type="button" class="btn btn--outline btn--sm" id="copyKeyBtn" disabled>Copy Key</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Messages -->
+            <section class="status-section">
+                <div id="statusMessages"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
